@@ -40,6 +40,23 @@
    
    
    
+   ## Development Day 3: 2024.1.3
    
+   1. 代码简写：以下两段代码的功能等效
    
+      ```
+              if (OnInteractAction != null)
+              {
+                  OnInteractAction(this, EventArgs.Empty);
+              }
+      ```
    
+      与：
+   
+      ```
+      		OnInteractAction ? .Invoke(this, EventArgs.Empty);
+      ```
+   
+   2. `ScriptableObject`
+   
+   3. `Prefab Variant`
