@@ -60,3 +60,9 @@
    2. `ScriptableObject`
    
    3. `Prefab Variant`
+
+
+
+## Development Day 4: 2024.1.4
+
+1. 

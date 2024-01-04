@@ -8,6 +8,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2372963370437835161}
     m_Modifications:
+    - target: {fileID: 546800844822577911, guid: 9a9137fa2b035d34e881701d2c178192,
+        type: 3}
+      propertyPath: containerCounter
+      value: 
+      objectReference: {fileID: 4573043572767725917}
     - target: {fileID: 4589716710238282922, guid: 9a9137fa2b035d34e881701d2c178192,
         type: 3}
       propertyPath: m_Name
@@ -63,12 +68,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4841286013473667211, guid: 9a9137fa2b035d34e881701d2c178192,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 91e8fe3de9249fc44b7bdd8050062896,
-        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -377,5 +376,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d4f72346a677ad459e64dc5a6d08d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kitchenObjectSO: {fileID: 11400000, guid: 3ce9a81cc4779eb4d919fd67b3a85c35, type: 2}
   counterTopPoint: {fileID: 4804046704780017264}
+  kitchenObjectSO: {fileID: 11400000, guid: 3ce9a81cc4779eb4d919fd67b3a85c35, type: 2}
