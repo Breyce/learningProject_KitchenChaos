@@ -65,4 +65,16 @@
 
 ## Development Day 4: 2024.1.4
 
-1. 
+## Development Day 5: 2024.1.5
+
+1. 要给一个游戏物体实现获得什么就装配上的效果，其实就是把所有的组件分出好多部分来，哪一部分捡到了就将其设置为`Active`就好：
+
+   ![image-20240105131838756](Images/游戏物体拼装.png)
+
+2. `Shift+Space`可以快捷将选中的`tab`调整为全屏。
+
+3. `Shader Graph`：
+
+   <img src="Images/Shader.png" alt="image-20240105142621827" style="zoom:80%;" />
+
+   
