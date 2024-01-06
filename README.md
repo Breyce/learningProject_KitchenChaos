@@ -77,4 +77,52 @@
 
    <img src="Images/Shader.png" alt="image-20240105142621827" style="zoom:80%;" />
 
+
+
+
+## Development Day 6: 2024.1.6
+
+1. 按键的另一种触发方式：
+
+   ```C#
+       [SerializeField] private Button playButton;
+   
+       private void Awake()
+       {
+           playButton.onClick.AddListener(PlayClick);
+       }
+   
+       private void PlayClick()
+       {
+           // Button logic
+       }
+   ```
+
+2. 新的`InputSystem`报错，当我从`gameScene`切换到`menu`再回到`gameScene`后尝试键盘输入时会报错，错误显示如下：究其原因是因为在场景切换时，原本挂载的`GamePauseUI`已经被销毁了，而当我再次进入场景时，依旧在去访问之前挂载的脚本的内容（而它已经不见了）。
+
+   ![image-20240106144709324](Images/GameInput.png)
+
+   解决办法：在销毁之前将挂载的信息卸下，让下一次进入时脚本重新挂载新加载的内容：
+
+   ```C#
+       private void Awake()
+       {
+           Instance = this;
+           playerInputActions = new PlayerInputActions();
+           playerInputActions.Player.Enable();
+           playerInputActions.Player.Interact.performed += Interact_performed;
+           playerInputActions.Player.InteractAlternate.performed += InteractAlternate_performed;
+           playerInputActions.Player.Pause.performed += Pause_performed;
+       }
+   
+   	private void OnDestroy()
+       {
+           playerInputActions.Player.Interact.performed -= Interact_performed;
+           playerInputActions.Player.InteractAlternate.performed -= InteractAlternate_performed;
+           playerInputActions.Player.Pause.performed -= Pause_performed;
+   
+           playerInputActions.Dispose();
+       }
+   ```
+
    
