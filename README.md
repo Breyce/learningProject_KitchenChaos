@@ -22,43 +22,47 @@
 
       ![image-20240101140135627](Images/角色.png)
 
-   ## Development Day 2: 2023.1.2
+   
 
-   1. `Cinemachine`：
-   
+## Development Day 2: 2023.1.2
+
+1. 1. `Cinemachine`：
+
       1. 首先在`Unity Package Manager`当中安装`Cinemachine`：
-   
+
          ![image-20240102112243921](Images/Cinemachine_PM.png)
-   
+
          然后既可以在`GameObject`的下拉列表中找到`Cinemachine`：
-   
+
          ![image-20240102112154340](Images/Cinemachine_List.png)
-   
+
          `Cinemachine`是直接作用在`MainCamera`上面的一个控制器，当添加了`Cinemachine`之后，`MainCamera`将不能再被直接操作。
-   
+
       2. 检测交互时，能不用`tag`就不用`tag`，因为`tag`的触发是通过判断字符串是否相等的，而字符串是非常脆弱非常容易出错的一种使用方式。解决办法是可以直接调用交互组件身上的代码，而不去判断是否接触到的物体是对应物体；也可以使用`layerMask`的方式，这些办法都可以规避使用字符串的场景。（当然有的时候不得不使用`tag`）。
+
    
+
    
-   
-   ## Development Day 3: 2024.1.3
-   
-   1. 代码简写：以下两段代码的功能等效
-   
+
+## Development Day 3: 2024.1.3
+
+1. 1. 代码简写：以下两段代码的功能等效
+
       ```
               if (OnInteractAction != null)
               {
                   OnInteractAction(this, EventArgs.Empty);
               }
       ```
-   
+
       与：
-   
+
       ```
       		OnInteractAction ? .Invoke(this, EventArgs.Empty);
       ```
-   
+
    2. `ScriptableObject`
-   
+
    3. `Prefab Variant`
 
 
@@ -125,4 +129,34 @@
        }
    ```
 
-   
+
+
+
+## Development Day 7: 2023.1.7
+
+1. `InputSystem`当中的按键再绑定以及保存：
+
+   1. 绑定：
+
+      ```C#
+      inputAction.PerformInteractiveRebinding(bindingIndex)
+          .OnComplete(callback =>
+           {
+               callback.Dispose();
+               playerInputActions.Player.Enable();
+            })
+             .Start();
+      ```
+
+   2. 保存：
+
+      ```
+      // 存储：
+      PlayerPrefs.SetString(PLAYER_PREFS_PRESSBINDING, playerInputActions.SaveBindingOverridesAsJson());
+      PlayerPrefs.Save();
+      
+      // 读取：
+      playerInputActions.LoadBindingOverridesFromJson(PlayerPrefs.GetString(PLAYER_PREFS_PRESSBINDING));
+      ```
+
+      
