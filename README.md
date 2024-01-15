@@ -159,4 +159,41 @@
       playerInputActions.LoadBindingOverridesFromJson(PlayerPrefs.GetString(PLAYER_PREFS_PRESSBINDING));
       ```
 
-      
+
+## Development Day 8: 2023.1.15
+
+1. 如何在`Package Manager`当中添加指定版本的包：
+
+   1. 点击`Package manager`左上角的加号：
+
+      ![image-20240115165346572](Images/PackageManager.png)
+
+   2. 选择用名字添加：
+
+      ![image-20240115165505881](Images/PackageManager_1.png)
+
+   3. 输入要添加的包的名字：
+
+      ![image-20240115165706370](Images/PackageManager_2.png)
+
+2. `NetWork Animator`要绑定在真正有`Animator`组件的游戏实体上。
+
+   1. `ClientRpc`和`ServerRpc`的函数命名结尾一定要是`ClientRpc`和`ServerRpc`:
+
+   ```
+       [ClientRpc]
+       private void SpawnNewWaitingRecipeClientRpc(int waitingRecipeSOIndex)
+       {
+           RecipeSO waitingRecipeSO = recipeListSO.recipeSOList[waitingRecipeSOIndex];
+   
+           waitingRecipeSOList.Add(waitingRecipeSO);
+   
+           OnRecipeSpawned?.Invoke(this, EventArgs.Empty);
+       }
+       
+       [ServerRpc]
+       private void DeliverCorrectRecipeServerRpc()
+       {
+   
+       }
+   ```
