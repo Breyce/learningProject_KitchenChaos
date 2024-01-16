@@ -79,7 +79,7 @@ public class OptionUI : MonoBehaviour
 
     private void Start()
     {
-        KitchenGameManager.Instance.OnGamePause += KitchenGameManager_OnGamePause;
+        KitchenGameManager.Instance.OnLocalGamePause += KitchenGameManager_OnGamePause;
         UpdateVisual();
         HidePressToRebind();
         Hide();

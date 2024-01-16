@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +20,7 @@ public class GamePauseUI : MonoBehaviour
         });
         menuButton.onClick.AddListener(() =>
         {
+            NetworkManager.Singleton.Shutdown();
             Loader.Load(Loader.Scene.MainMenu);
         });
         optionsButton.onClick.AddListener(() =>
@@ -29,18 +31,18 @@ public class GamePauseUI : MonoBehaviour
 
     private void Start()
     {
-        KitchenGameManager.Instance.OnGamePause += GamePause_OnGamePause;
-        KitchenGameManager.Instance.OnGameUnpause += GameUnpause_OnGameUnpause;
+        KitchenGameManager.Instance.OnLocalGamePause += GamePause_OnLocalGamePause;
+        KitchenGameManager.Instance.OnLocalGameUnpause += GameUnpause_OnLocalGameUnpause;
 
         Hide();
     }
 
-    private void GameUnpause_OnGameUnpause(object sender, System.EventArgs e)
+    private void GameUnpause_OnLocalGameUnpause(object sender, System.EventArgs e)
     {
         Hide();
     }
 
-    private void GamePause_OnGamePause(object sender, System.EventArgs e)
+    private void GamePause_OnLocalGamePause(object sender, System.EventArgs e)
     {
         Show();
         recipeDelliveredText.text = DeliveryManager.Instance.GetSuccessfulRecipeAmount().ToString();

@@ -48,6 +48,7 @@ public class KitchenObject : NetworkBehaviour
         {
             Debug.LogError("Counter already has a KitchenObject");
         }
+
         kitchenObjectParent.SetKitchenObject(this);
 
         followTransform.SetTargetTransform(kitchenObjectParent.GetKitchenObjectFollowTransform());
